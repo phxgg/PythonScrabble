@@ -3,7 +3,7 @@ from classes.SakClass import SakClass
 
 
 class Computer(Player):
-  def __init__(self, sak: SakClass, end_game: bool) -> None:
+  def __init__(self, sak: SakClass, end_game: list) -> None:
     super().__init__(name='Η/Υ', sak=sak, end_game=end_game)
 
   def __repr__(self) -> str:
@@ -11,6 +11,6 @@ class Computer(Player):
 
   def play(self) -> None:
     print('--------------------')
-    print(f'Παίζει ο {self.get_name()}. ** Σκορ:', self.get_score(), ' **')
+    print(f'Παίζει ο {self.get_name()}. ** Σκορ: {self.get_score()} **')
 
   

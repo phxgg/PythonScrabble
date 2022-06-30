@@ -3,7 +3,7 @@ from classes.SakClass import SakClass
 
 
 class Human(Player):
-  def __init__(self, name: str, sak: SakClass, end_game: bool) -> None:
+  def __init__(self, name: str, sak: SakClass, end_game: list) -> None:
     super().__init__(name=name, sak=sak, end_game=end_game)
 
   def __repr__(self) -> str:    

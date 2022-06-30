@@ -5,7 +5,7 @@ class Player:
   letters = []
   score = 0
 
-  def __init__(self, name: str, sak: SakClass, end_game: bool) -> None:
+  def __init__(self, name: str, sak: SakClass, end_game: list) -> None:
     self.name = name
     self.sak = sak
     self.end_game = end_game
