@@ -6,24 +6,24 @@ class Player:
     self.name = name
   
   def __repr__(self) -> str:
-    pass
+    return f'Player({self.name})'
 
   def get_letters(self):
     return self.letters
 
   def get_name(self):
     return self.name
-  
-  def set_name(self, name):
-    self.name = name
 
   def get_score(self):
     return self.score
   
+  def set_name(self, name):
+    self.name = name
+  
   def set_score(self, score):
     self.score = score
 
-  def add_score(self, score):
+  def increase_score(self, score):
     self.score += score
 
   def reset_score(self):

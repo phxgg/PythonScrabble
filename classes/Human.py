@@ -6,6 +6,9 @@ class Human(Player):
     super().__init__(name=name)
 
   def __repr__(self) -> str:
+    return f'Human({self.name})'
+
+  def play(self):
     pass
 
   

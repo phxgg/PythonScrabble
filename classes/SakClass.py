@@ -1,5 +1,11 @@
+from random import shuffle
+
+
 class SakClass:
-  lets = {
+  bag = []
+
+  # Available letters: [letter: [amount, value]]
+  letters = {
     'Α': [12, 1],
     'Β': [1, 8],
     'Γ': [2, 4],
@@ -27,6 +33,42 @@ class SakClass:
   }
 
   def __init__(self):
-    pass
+    for letter in self.letters:
+      for i in range(self.letters[letter][0]):
+        self.bag.append(letter)
+
+    self.randomize_sak()
+
+  def get_letters(self):
+    '''
+    Get 7 random letters from the bag and remove them from the bag.
+    '''
+
+    letters = []
+    for i in range(7):
+      letters.append(self.bag.pop())
+    return letters
+
+  def put_back_letters(self, letters):
+    '''
+    Put back the letters in the bag.
+    '''
+
+    for letter in letters:
+      self.bag.append(letter)
+
+  def randomize_sak(self):
+    '''
+    Randomize (shuffle) the letters in the bag.
+    '''
+
+    shuffle(self.bag)
+
+  def number_of_letters(self):
+    '''
+    Return the number of letters remaining in the bag.
+    '''
+
+    return len(self.bag)
 
   
