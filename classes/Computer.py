@@ -6,7 +6,7 @@ class Computer(Player):
     super().__init__(name='Η/Υ')
 
   def __repr__(self) -> str:
-    return f'Computer({self.name})'
+    return super().__repr__()
 
   def play(self):
     pass

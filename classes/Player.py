@@ -1,3 +1,6 @@
+from classes.SakClass import SakClass
+
+
 class Player:
   letters = []
   score = 0
@@ -6,7 +9,12 @@ class Player:
     self.name = name
   
   def __repr__(self) -> str:
-    return f'Player({self.name})'
+    letters_str = ''
+    for letter in self.letters:
+      letters_str += letter + f',{SakClass.get_letter_value(letter)} - '
+    letters_str = letters_str[:-3]
+    
+    return f'Παίχτης: {self.name}\nΓράμματα: {letters_str}\nΣκορ: {self.score}'
 
   def get_letters(self):
     return self.letters

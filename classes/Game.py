@@ -21,6 +21,9 @@ class Game:
     os.system('cls' if os.name == 'nt' else 'clear')
 
   def setup(self):
+    '''
+    Setup the game.
+    '''
     # Get player name & initialize player and computer
     player_name = input('Πληκτρολογήστε το όνομα σας: ')
     self.human = Human(name=player_name)
@@ -30,14 +33,17 @@ class Game:
     self.human.set_letters(self.sak.get_letters())
     self.computer.set_letters(self.sak.get_letters())
 
-    print(self.human.get_name(), 'έχει', len(self.human.get_letters()), 'γράμματα')
-    print(self.human.get_letters())
+    print('** Διαθέσιμα γράμματα:', self.sak.number_of_letters(), '**')
+    print('*************************************')
+    print(repr(self.human))
+    print('*************************************')
+    print(repr(self.computer))
 
-    print(self.computer.get_name(), 'έχει', len(self.computer.get_letters()), 'γράμματα')
-    print(self.computer.get_letters())
+    # Run game
+    self.run()
 
   def run(self):
-    pass
+    self.human.play()
 
   def end(self):
     pass

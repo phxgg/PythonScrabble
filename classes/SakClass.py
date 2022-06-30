@@ -39,6 +39,25 @@ class SakClass:
 
     self.randomize_sak()
 
+  @staticmethod
+  def get_letter_value(letter):
+    '''
+    Return the value of a letter.
+    '''
+
+    return SakClass.letters[letter][1]
+
+  @staticmethod
+  def get_word_value(word):
+    '''
+    Return the value of a word.
+    '''
+
+    value = 0
+    for letter in word:
+      value += SakClass.get_letter_value(letter)
+    return value
+
   def get_letters(self):
     '''
     Get 7 random letters from the bag and remove them from the bag.
