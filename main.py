@@ -1,6 +1,7 @@
 import os
 import sys
 
+from tabulate import tabulate
 from classes.Game import Game
 from classes.GameLog import GameLog
 from classes.Settings import Settings
@@ -13,11 +14,32 @@ def handle_scores():
   print('**** SCORES ****')
   print('----------------')
 
+  logs = {
+    'date': [],
+    'player1': [],
+    'score1': [],
+    'player2': [],
+    'score2': [],
+    'winner': [],
+    'rounds': [],
+    'letters_used': []
+  }
+
   for filename in os.listdir('game_logs/'):
     f = os.path.join('game_logs/', filename)
     if os.path.isfile(f):
       game_log = GameLog.load(f)
-      print(f'{game_log["date"]} - {game_log["players"][0]} [{game_log["scores"][0]}] vs {game_log["players"][1]} [{game_log["scores"][1]}] - Winner: {game_log["winner"]} - Letters used: {game_log["letters_used"]}')
+
+      logs['date'].append(game_log['date'])
+      logs['player1'].append(game_log['players'][0])
+      logs['player2'].append(game_log['players'][1])
+      logs['score1'].append(game_log['scores'][0])
+      logs['score2'].append(game_log['scores'][1])
+      logs['winner'].append(game_log['winner'])
+      logs['rounds'].append(game_log['rounds'])
+      logs['letters_used'].append(game_log['letters_used'])
+
+  print(tabulate(logs, headers='keys'))
 
   print('\nPress any key to return to the main menu.')
   input()

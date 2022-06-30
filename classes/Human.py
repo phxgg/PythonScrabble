@@ -11,12 +11,12 @@ class Human(Player):
 
   def handle_word_input(self) -> None:
     # Get player input
-    word = input('Πληκτρολογήστε μία λέξη: ')
+    word = input(f'[ {self.get_name()} ] Πληκτρολογήστε μία λέξη: ')
 
     if word == 'p':
       self.set_letters(self.sak.get_letters())
       self.sak.put_back_letters(self.get_letters())
-      print('Τα γράμματα επαναφέρθηκαν, ωστόσο χάνεις τη σειρά σου.')
+      print('> Τα γράμματα επαναφέρθηκαν, ωστόσο χάνεις τη σειρά σου.')
       return
     elif word == 'q':
       self.end_game[0] = True
@@ -26,8 +26,8 @@ class Human(Player):
 
     if self.evaluate_word(word):
       print('--------------------')
-      print(f'[ {self.get_name()} ] Λέξη: {word} - Κέρδισες {SakClass.get_word_value(word)} πόντους!')
-      print(f'[ {self.get_name()} ] Νέα γράμματα: {self.get_letters()}')
+      print(f'[ {self.get_name()} ] Λέξη: {word} - Κερδίζεις {SakClass.get_word_value(word)} πόντους!')
+      print(f'[ {self.get_name()} ] >>> Νέα γράμματα: {self.get_letters()}')
       print('--------------------')
     else:
       self.handle_word_input()
@@ -35,7 +35,7 @@ class Human(Player):
   def play(self) -> None:
     print('--------------------')
     print('Παίζεις! ** Σκορ:', self.get_score(), ' **')
-    print('Γράμματα: ', self.get_letters())
+    print('>>> Γράμματα: ', self.get_letters())
 
     self.handle_word_input()
 

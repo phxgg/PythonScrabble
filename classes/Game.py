@@ -58,11 +58,16 @@ class Game:
 
   def end(self) -> None:
     print('Τέλος παιχνιδιού!')
+    
     game_log = GameLog(
         [self.human.get_name(), self.computer.get_name()],
         [self.human.get_score(), self.computer.get_score()],
+        self.round,
         101-self.sak.number_of_letters()
       )
+
+    # 
+
     game_log.save()
     sys.exit()
 
