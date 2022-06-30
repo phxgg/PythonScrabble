@@ -68,6 +68,13 @@ class SakClass:
       letters.append(self.bag.pop())
     return letters
 
+  def get_letter(self):
+    '''
+    Get a random letter from the bag.
+    '''
+
+    return self.bag.pop()
+
   def put_back_letters(self, letters):
     '''
     Put back the letters in the bag.
@@ -75,6 +82,8 @@ class SakClass:
 
     for letter in letters:
       self.bag.append(letter)
+
+    self.randomize_sak()
 
   def randomize_sak(self):
     '''

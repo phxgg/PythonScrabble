@@ -5,8 +5,9 @@ class Player:
   letters = []
   score = 0
 
-  def __init__(self, name):
+  def __init__(self, name: str, sak: SakClass):
     self.name = name
+    self.sak = sak
   
   def __repr__(self) -> str:
     letters_str = ''
@@ -45,3 +46,47 @@ class Player:
 
   def add_letter(self, letter):
     self.letters.append(letter)
+
+  def add_remaining_letters(self):
+    '''
+    TODO!
+    Add remaining letters to player's letters so they're always 7
+    '''
+    needed_letters = 7 - len(self.get_letters())
+    for i in range(needed_letters):
+      self.add_letter(self.sak.get_letter())
+
+  def is_valid_word(self, word):
+    # Create wordlist if it does not already exist
+    global wordlist
+    if 'wordlist' not in globals():
+      print('Variable \'wordlist\' not in globals')
+      wordlist = open('greek7.txt', 'r', encoding='utf-8').read().splitlines()
+    
+    # Check if word's letters are in player's letters
+    letters_copy = self.get_letters().copy()
+    for letter in word:
+      if letter in letters_copy:
+        letters_copy.remove(letter)
+      else:
+        print('Το γράμμα ', letter, ' δεν υπάρχει στα γράμματα σου!')
+        return False
+
+    # Check if word is in dictionary
+    if not word in wordlist:
+      print('Η λέξη ', word, ' δεν υπάρχει στο λεξικό!')
+      return False
+    
+    # Word is valid
+    return True
+
+  def evaluate_word(self, word):
+    if not self.is_valid_word(word):
+      return False
+
+    for letter in word:
+      self.remove_letter(letter)
+      self.increase_score(SakClass.get_word_value(word))
+      self.add_remaining_letters()
+
+    return True

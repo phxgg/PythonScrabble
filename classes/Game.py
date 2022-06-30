@@ -10,7 +10,9 @@ class Game:
     self.clear_screen()
     print('[!] Νέο παιχνίδι!')
 
+    # Initialize the SakClass
     self.sak = SakClass()
+    self.round = 1
     self.setup()
 
   def __repr__(self) -> str:
@@ -26,8 +28,8 @@ class Game:
     '''
     # Get player name & initialize player and computer
     player_name = input('Πληκτρολογήστε το όνομα σας: ')
-    self.human = Human(name=player_name)
-    self.computer = Computer()
+    self.human = Human(name=player_name, sak=self.sak)
+    self.computer = Computer(sak=self.sak)
 
     # Set letters for players
     self.human.set_letters(self.sak.get_letters())

@@ -10,6 +10,7 @@ def handle_menu_input():
   elif choice == '2':
     print('Ρυθμίσεις')
   elif choice == '3':
+    # Start the game
     game = Game()
   elif choice == 'q':
     print('Έξοδος')
