@@ -18,6 +18,9 @@ class Player:
     return f'Παίχτης: {self.name}\nΓράμματα: {letters_str}\nΣκορ: {self.score}'
 
   def get_letters(self):
+    '''
+    Returns player's letters
+    '''
     return self.letters
 
   def get_name(self):
@@ -49,7 +52,6 @@ class Player:
 
   def add_remaining_letters(self):
     '''
-    TODO!
     Add remaining letters to player's letters so they're always 7
     '''
     needed_letters = 7 - len(self.get_letters())

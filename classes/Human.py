@@ -14,9 +14,14 @@ class Human(Player):
     # Get player input
     word = input('Πληκτρολογήστε μία λέξη: ')
 
-    if word == 'q':
+    if word == 'p':
+      self.set_letters(self.sak.get_letters())
+      self.sak.put_back_letters(self.get_letters())
+      # TODO: player loses his turn
+      pass
+    elif word == 'q':
       print('Τέλος παιχνιδιού!')
-      # save the game
+      # TODO: save the game
       sys.exit()
 
     if self.evaluate_word(word):

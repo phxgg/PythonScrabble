@@ -33,6 +33,9 @@ class SakClass:
   }
 
   def __init__(self):
+    '''
+    Initialize the bag with all letters. After that, randomize the letters in the bag.
+    '''
     for letter in self.letters:
       for i in range(self.letters[letter][0]):
         self.bag.append(letter)
@@ -40,7 +43,7 @@ class SakClass:
     self.randomize_sak()
 
   @staticmethod
-  def get_letter_value(letter):
+  def get_letter_value(letter: str):
     '''
     Return the value of a letter.
     '''
@@ -48,7 +51,7 @@ class SakClass:
     return SakClass.letters[letter][1]
 
   @staticmethod
-  def get_word_value(word):
+  def get_word_value(word: str):
     '''
     Return the value of a word.
     '''
@@ -60,7 +63,7 @@ class SakClass:
 
   def get_letters(self):
     '''
-    Get 7 random letters from the bag and remove them from the bag.
+    Returns 7 random letters from the bag and removes those letters from the bag.
     '''
 
     letters = []
@@ -70,14 +73,14 @@ class SakClass:
 
   def get_letter(self):
     '''
-    Get a random letter from the bag.
+    Returns a random letter from the bag and removes that letter from the bag.
     '''
 
     return self.bag.pop()
 
-  def put_back_letters(self, letters):
+  def put_back_letters(self, letters: list):
     '''
-    Put back the letters in the bag.
+    Puts back the letters in the bag. After that, randomizes the letters in the bag.
     '''
 
     for letter in letters:
