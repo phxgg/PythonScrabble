@@ -45,6 +45,7 @@ class Game:
     self.run()
 
   def run(self):
+    # TODO: Game rounds. Player goes first, computer goes second and so on until the game ends.
     self.human.play()
 
   def end(self):
