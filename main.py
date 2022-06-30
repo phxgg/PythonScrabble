@@ -1,14 +1,70 @@
+import os
 import sys
 
 from classes.Game import Game
+from classes.GameLog import GameLog
+from classes.Settings import Settings
 
+settings = Settings()
+
+def handle_scores():
+  Game.clear_screen()
+
+  print('**** SCORES ****')
+  print('----------------')
+
+  for filename in os.listdir('game_logs/'):
+    f = os.path.join('game_logs/', filename)
+    if os.path.isfile(f):
+      game_log = GameLog.load(f)
+      print(f'{game_log["date"]} - {game_log["players"][0]} [{game_log["scores"][0]}] vs {game_log["players"][1]} [{game_log["scores"][1]}] - Winner: {game_log["winner"]} - Letters used: {game_log["letters_used"]}')
+
+  print('\nPress any key to return to the main menu.')
+  input()
+  main()
+
+
+# Settings menu
+def handle_settings_input():
+  Game.clear_screen()
+
+  print('***** Ρυθμίσεις *****')
+  print('--------------------')
+
+  min_letters = ('[1]' if settings.get_computer_algorithm() == 'min' else '1.') + ' MIN Letters'
+  max_letters = ('[2]' if settings.get_computer_algorithm() == 'max' else '2.') + ' MAX Letters'
+  smart = ('[3]' if settings.get_computer_algorithm() == 'smart' else '3.') + ' SMART'
+
+  print(min_letters)
+  print(max_letters)
+  print(smart)
+  print('4. Επιστροφή')
+
+  choice = input('Επιλέξτε αλγόριθμο Η/Υ: ')
+
+  if choice == '1':
+    settings.set_computer_algorithm('min')
+    handle_settings_input()
+  elif choice == '2':
+    settings.set_computer_algorithm('max')
+    handle_settings_input()
+  elif choice == '3':
+    settings.set_computer_algorithm('smart')
+    handle_settings_input()
+  elif choice == '4':
+    main()
+  else:
+    print('Λάθος επιλογή')
+    handle_settings_input()
+
+# Main menu
 def handle_menu_input():
   choice = input('Επιλέξτε: ')
 
   if choice == '1':
-    print('Σκορ')
+    handle_scores()
   elif choice == '2':
-    print('Ρυθμίσεις')
+    handle_settings_input()
   elif choice == '3':
     # Start the game
     game = Game()
@@ -20,6 +76,11 @@ def handle_menu_input():
     handle_menu_input()
 
 def main():
+  Game.clear_screen()
+
+  # game_log = GameLog.load('game_logs/test.json')
+  # print(game_log)
+
   print('***** SCRABBLE *****')
   print('--------------------')
   print('1. Σκορ')

@@ -1,2 +1,3 @@
-scrabble.py
+docs/
 classes/__pycache__/
+game_logs/
