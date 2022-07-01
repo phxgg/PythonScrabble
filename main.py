@@ -25,6 +25,9 @@ def handle_scores():
     'letters_used': []
   }
 
+  if not os.path.exists('game_logs/'):
+    os.makedirs('game_logs/')
+    
   for filename in os.listdir('game_logs/'):
     f = os.path.join('game_logs/', filename)
     if os.path.isfile(f):
