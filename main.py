@@ -89,7 +89,7 @@ def handle_menu_input():
     handle_settings_input()
   elif choice == '3':
     # Start the game
-    game = Game()
+    game = Game(settings)
   elif choice == 'q':
     print('Έξοδος')
     sys.exit()

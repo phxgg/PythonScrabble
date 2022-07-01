@@ -4,15 +4,16 @@ from classes.Computer import Computer
 from classes.GameLog import GameLog
 from classes.Human import Human
 from classes.SakClass import SakClass
+from classes.Settings import Settings
 
 
 class Game:
-  def __init__(self) -> None:
+  def __init__(self, settings: Settings) -> None:
     self.clear_screen()
     print('[!] Νέο παιχνίδι!')
 
-    # Initialize the SakClass
     self.sak = SakClass()
+    self.settings = settings
     self.round = 1
     self.end_game = [False] # enclose the inout variable so we can actually pass by reference into the Player class
     self.setup()
@@ -31,7 +32,7 @@ class Game:
     # Get player name & initialize player and computer
     player_name = input('Πληκτρολογήστε το όνομα σας: ')
     self.human = Human(name=player_name, sak=self.sak, end_game=self.end_game)
-    self.computer = Computer(sak=self.sak, end_game=self.end_game)
+    self.computer = Computer(sak=self.sak, end_game=self.end_game, algorithm=self.settings.get_computer_algorithm())
 
     # Set letters for players
     self.human.set_letters(self.sak.get_letters())

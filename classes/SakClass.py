@@ -68,7 +68,10 @@ class SakClass:
 
     letters = []
     for i in range(7):
-      letters.append(self.bag.pop())
+      try:
+        letters.append(self.bag.pop())
+      except IndexError:
+        break
     return letters
 
   def get_letter(self) -> str:
@@ -76,7 +79,10 @@ class SakClass:
     Returns a random letter from the bag and removes that letter from the bag.
     '''
 
-    return self.bag.pop()
+    try:
+      return self.bag.pop()
+    except IndexError:
+      return None
 
   def put_back_letters(self, letters: list) -> None:
     '''

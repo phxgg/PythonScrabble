@@ -87,7 +87,7 @@ class Player:
 
     # Check if word is in dictionary
     if not word in wordlist:
-      print('Η λέξη ', word, ' δεν υπάρχει στο λεξικό!')
+      # print('Η λέξη ', word, ' δεν υπάρχει στο λεξικό!')
       return False
     
     # Word is valid

@@ -14,15 +14,14 @@ class Human(Player):
     word = input(f'[ {self.get_name()} ] Πληκτρολογήστε μία λέξη: ')
 
     if word == 'p':
+      letters_to_return = self.get_letters().copy()
       self.set_letters(self.sak.get_letters())
-      self.sak.put_back_letters(self.get_letters())
+      self.sak.put_back_letters(letters_to_return)
       print('> Τα γράμματα επαναφέρθηκαν, ωστόσο χάνεις τη σειρά σου.')
       return
     elif word == 'q':
       self.end_game[0] = True
       return
-      # TODO: save the game
-      # sys.exit()
 
     if self.evaluate_word(word):
       print('--------------------')
