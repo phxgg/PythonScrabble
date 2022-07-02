@@ -24,7 +24,6 @@ class Human(Player):
       return
 
     if self.evaluate_word(word):
-      print('--------------------')
       print(f'[ {self.get_name()} ] Λέξη: {word} - Κερδίζεις {SakClass.get_word_value(word)} πόντους!')
       print(f'[ {self.get_name()} ] >>> Νέα γράμματα: {self.get_letters()}')
       print('--------------------')
@@ -32,8 +31,7 @@ class Human(Player):
       self.handle_word_input()
 
   def play(self) -> None:
-    print('--------------------')
-    print('Παίζεις! ** Σκορ:', self.get_score(), ' **')
+    print('\nΠαίζεις! ** Σκορ:', self.get_score(), ' **')
     print('>>> Γράμματα: ', self.get_letters())
 
     self.handle_word_input()

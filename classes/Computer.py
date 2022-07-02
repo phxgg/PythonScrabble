@@ -12,8 +12,7 @@ class Computer(Player):
     return f'[ INFO ] Παίχτης: {self.get_name()}\n[ INFO ] Γράμματα: *κρυφό*\n[ INFO ] Σκορ: {self.get_score()}'
 
   def play(self) -> None:
-    print('--------------------')
-    print(f'Παίζει ο {self.get_name()}. ** Σκορ: {self.get_score()} **')
+    print(f'\nΠαίζει ο {self.get_name()}. ** Σκορ: {self.get_score()} **')
 
     if self.algorithm == 'min':
       self.min()
@@ -29,9 +28,8 @@ class Computer(Player):
         if self.evaluate_word(word):
           self.set_letters(self.sak.get_letters())
           self.sak.put_back_letters(self.get_letters())
-          print('--------------------')
           print(f'[ {self.get_name()} ] Λέξη: {word} - Κερδίζεις {SakClass.get_word_value(word)} πόντους!')
-          print(f'[ {self.get_name()} ] >>> Νέα γράμματα: {self.get_letters()}')
+          print(f'[ {self.get_name()} ] >>> Νέα γράμματα: *κρυφό*') # {self.get_letters()}
           print('--------------------')
           return
         else:
@@ -57,9 +55,8 @@ class Computer(Player):
         if self.evaluate_word(word):
           self.set_letters(self.sak.get_letters())
           self.sak.put_back_letters(self.get_letters())
-          print('--------------------')
           print(f'[ {self.get_name()} ] Λέξη: {word} - Κερδίζεις {SakClass.get_word_value(word)} πόντους!')
-          print(f'[ {self.get_name()} ] >>> Νέα γράμματα: {self.get_letters()}')
+          print(f'[ {self.get_name()} ] >>> Νέα γράμματα: *κρυφό*') # {self.get_letters()}
           print('--------------------')
           return
         else:

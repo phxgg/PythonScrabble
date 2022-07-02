@@ -44,7 +44,8 @@ class GameLog:
       json.dump(self.__dict__, f)
 
   @staticmethod
-  def load(game_log):
-    with open(game_log, 'r') as f:
+  def load(game_log_path: str):
+    game_log = None
+    with open(game_log_path, 'r') as f:
       game_log = json.load(f)
     return game_log

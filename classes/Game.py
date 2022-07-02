@@ -48,17 +48,21 @@ class Game:
         break
 
       print('\n** [ Round ', self.round, '] Διαθέσιμα γράμματα:', self.sak.number_of_letters(), ' **')
-      print('******************************************')
+      print('*******************************************')
       print(repr(self.human))
-      print('********************************************')
+      print('*******************************************')
       print(repr(self.computer))
 
       self.human.play()
+
+      # if self.end_game[0] == True:
+      #   self.end()
+      # else:
       self.computer.play()
       self.round += 1
 
   def end(self) -> None:
-    print('Τέλος παιχνιδιού!')
+    print('\n[ INFO ]Τέλος παιχνιδιού!\n')
     
     game_log = GameLog(
         [self.human.get_name(), self.computer.get_name()],
@@ -67,7 +71,14 @@ class Game:
         101-self.sak.number_of_letters()
       )
 
-    # 
+    # display game info
+    print('*******************************************')
+    print(f'** [ Winner: {game_log.get_winner()} ]')
+    print(f'** Total Rounds: {game_log.get_rounds()}')
+    print(f'** Total Letters Used: {game_log.get_letters_used()}')
+    print(f'** Total Letters Used: {game_log.get_letters_used()}')
+    print(f'** Date: {game_log.get_date()}')
+    print('*******************************************')
 
     game_log.save()
     sys.exit()
