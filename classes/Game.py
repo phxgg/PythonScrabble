@@ -62,7 +62,7 @@ class Game:
       self.round += 1
 
   def end(self) -> None:
-    print('\n[ INFO ]Τέλος παιχνιδιού!\n')
+    print('\n[ INFO ] Τέλος παιχνιδιού!\n')
     
     game_log = GameLog(
         [self.human.get_name(), self.computer.get_name()],

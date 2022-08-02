@@ -2,13 +2,13 @@ from classes.SakClass import SakClass
 
 
 class Player:
-  letters = []
-  score = 0
-
   def __init__(self, name: str, sak: SakClass, end_game: list) -> None:
+    self.letters = []
+    self.score = 0
     self.name = name
     self.sak = sak
     self.end_game = end_game
+    self.current_message = ''
   
   def __repr__(self) -> str:
     return f'Player {self.name} with {self.get_letters()} and score {self.get_score()}'
@@ -65,6 +65,8 @@ class Player:
       self.add_letter(self.sak.get_letter())
 
   def is_valid_word(self, word) -> bool:
+    self.current_message = ''
+
     # Create wordlist if it does not already exist
     global wordlist
     if 'wordlist' not in globals():
@@ -73,7 +75,7 @@ class Player:
     
     # Check if word is greater than 7 letters
     if len(word) > 7:
-      print('Η λέξη είναι μεγαλύτερη από 7 χαρακτήρες!')
+      self.current_message = 'Η λέξη είναι μεγαλύτερη από 7 χαρακτήρες!'
       return False
 
     # Check if word's letters are in player's letters
@@ -82,20 +84,26 @@ class Player:
       if letter in letters_copy:
         letters_copy.remove(letter)
       else:
-        print('Το γράμμα ', letter, ' δεν υπάρχει στα γράμματα σου!')
+        self.current_message = f'Το γράμμα {letter} δεν υπάρχει στα γράμματα σου!'
         return False
 
     # Check if word is in dictionary
     if not word in wordlist:
-      # print('Η λέξη ', word, ' δεν υπάρχει στο λεξικό!')
+      self.current_message = f'Η λέξη {word} δεν υπάρχει στο λεξικό!'
       return False
     
     # Word is valid
     return True
 
-  def evaluate_word(self, word) -> bool:
+  def evaluate_word(self, word) -> tuple:
+    '''
+    Evaluate word.
+    If the word is valid, add it to the player's score and remove the letters from the player's letters.
+    Return: (bool: whether the word was evaluated, str: message to display)
+    '''
+
     if not self.is_valid_word(word):
-      return False
+      return False, self.current_message
 
     # self.increase_score(SakClass.get_word_value(word))
     for letter in word:
@@ -103,4 +111,4 @@ class Player:
       self.increase_score(SakClass.get_letter_value(letter))
       self.add_remaining_letters()
 
-    return True
+    return True, ''

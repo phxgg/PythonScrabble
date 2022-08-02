@@ -52,7 +52,10 @@ class Computer(Player):
     for i in range(len(self.get_letters()), 2, -1): # words of numOfLetters - 2 letters
       for x in itertools.permutations(self.get_letters(), i):
         word = ''.join(x)
-        if self.evaluate_word(word):
+
+        eval, msg = self.evaluate_word(word)
+
+        if eval:
           self.set_letters(self.sak.get_letters())
           self.sak.put_back_letters(self.get_letters())
           print(f'[ {self.get_name()} ] Λέξη: {word} - Κερδίζεις {SakClass.get_word_value(word)} πόντους!')

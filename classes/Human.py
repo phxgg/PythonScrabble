@@ -23,11 +23,14 @@ class Human(Player):
       self.end_game[0] = True
       return
 
-    if self.evaluate_word(word):
+    eval, msg = self.evaluate_word(word)
+
+    if eval:
       print(f'[ {self.get_name()} ] Λέξη: {word} - Κερδίζεις {SakClass.get_word_value(word)} πόντους!')
       print(f'[ {self.get_name()} ] >>> Νέα γράμματα: {self.get_letters()}')
       print('--------------------')
     else:
+      if msg: print(msg)
       self.handle_word_input()
 
   def play(self) -> None:
