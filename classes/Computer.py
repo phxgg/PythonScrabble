@@ -70,5 +70,31 @@ class Computer(Player):
     return
 
   def smart(self) -> None:
-    pass
+    approved_words = {}
+
+    for i in range(1, len(self.get_letters())): # words of 2 - numOfLetters letters
+      for x in itertools.permutations(self.get_letters(), i + 1):
+        word = ''.join(x)
+        if self.is_valid_word(word):
+          # add word to approved_words with value of word
+          # return False, self.current_message
+          approved_words[word] = SakClass.get_word_value(word)
+        else:
+          continue
+
+    if len(approved_words) > 0:
+      # find max value in approved_words
+      max_value_word = max(approved_words, key=approved_words.get)
+      
+      if self.evaluate_word(max_value_word):
+        self.set_letters(self.sak.get_letters())
+        self.sak.put_back_letters(self.get_letters())
+        print(f'[ {self.get_name()} ] Λέξη: {max_value_word} - Κερδίζεις {approved_words[max_value_word]} πόντους!')
+        print(f'[ {self.get_name()} ] >>> Νέα γράμματα: *κρυφό*') # {self.get_letters()}
+        print('--------------------')
+        return
+    else:
+      print('Δεν βρέθηκε κάποια λέξη. Τέλος παιχνιδιού.')
+      self.end_game[0] = True
+      return
   
