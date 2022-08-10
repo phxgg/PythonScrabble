@@ -3,8 +3,6 @@ from classes.Player import Player
 from classes.SakClass import SakClass
 
 
-# OTAN PATAS Q STO SMART ALGROTIHM DEN RTELEIWNEI INSTANT
-
 class Computer(Player):
   def __init__(self, sak: SakClass, end_game: list, algorithm: str) -> None:
     super().__init__(name='Η/Υ', sak=sak, end_game=end_game)
