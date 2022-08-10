@@ -55,11 +55,11 @@ class Game:
 
       self.human.play()
 
-      # if self.end_game[0] == True:
-      #   self.end()
-      # else:
-      self.computer.play()
-      self.round += 1
+      if self.end_game[0] == True:
+        self.end()
+      else:
+        self.computer.play()
+        self.round += 1
 
   def end(self) -> None:
     print('\n[ INFO ] Τέλος παιχνιδιού!\n')
