@@ -36,6 +36,10 @@ class GameLog:
     return self.date
 
   def save(self) -> None:
+    '''
+    Saves the game log to a json file in the game_logs directory.
+    '''
+
     if not os.path.exists('game_logs/'):
       os.makedirs('game_logs/')
 
@@ -45,6 +49,10 @@ class GameLog:
 
   @staticmethod
   def load(game_log_path: str):
+    '''
+    Loads a game log from a json file.
+    '''
+
     game_log = None
     with open(game_log_path, 'r') as f:
       game_log = json.load(f)

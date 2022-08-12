@@ -27,16 +27,16 @@ def handle_scores():
     'letters_used': []
   }
 
-  scores_dir = 'game_logs/'
+  game_logs_dir = 'game_logs/'
 
   if not os.path.exists('game_logs/'):
-    os.makedirs(scores_dir)
+    os.makedirs(game_logs_dir)
 
-  # list_of_files = filter(lambda x: os.path.isfile(os.path.join(scores_dir, x)), os.listdir(scores_dir))
-  # list_of_files = sorted(list_of_files, key=lamba x: os.path.getmtime(os.path.join(scores_dir, x)))
+  # list_of_files = filter(lambda x: os.path.isfile(os.path.join(game_logs_dir, x)), os.listdir(game_logs_dir))
+  # list_of_files = sorted(list_of_files, key=lamba x: os.path.getmtime(os.path.join(game_logs_dir, x)))
 
-  for filename in os.listdir(scores_dir):
-    f = os.path.join(scores_dir, filename)
+  for filename in os.listdir(game_logs_dir):
+    f = os.path.join(game_logs_dir, filename)
     if os.path.isfile(f):
       game_log = GameLog.load(f)
 

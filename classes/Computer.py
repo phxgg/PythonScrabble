@@ -25,7 +25,10 @@ class Computer(Player):
     for i in range(1, len(self.get_letters())): # words of 2 - numOfLetters letters
       for x in itertools.permutations(self.get_letters(), i + 1):
         word = ''.join(x)
-        if self.evaluate_word(word):
+
+        eval, msg = self.evaluate_word(word)
+        
+        if eval:
           self.set_letters(self.sak.get_letters())
           self.sak.put_back_letters(self.get_letters())
           print(f'[ {self.get_name()} ] Λέξη: {word} - Κερδίζεις {SakClass.get_word_value(word)} πόντους!')
@@ -79,14 +82,14 @@ class Computer(Player):
           # add word to approved_words with value of word
           # return False, self.current_message
           approved_words[word] = SakClass.get_word_value(word)
-        else:
-          continue
 
     if len(approved_words) > 0:
       # find max value in approved_words
       max_value_word = max(approved_words, key=approved_words.get)
       
-      if self.evaluate_word(max_value_word):
+      eval, msg = self.evaluate_word(max_value_word)
+
+      if eval:
         self.set_letters(self.sak.get_letters())
         self.sak.put_back_letters(self.get_letters())
         print(f'[ {self.get_name()} ] Λέξη: {max_value_word} - Κερδίζεις {approved_words[max_value_word]} πόντους!')

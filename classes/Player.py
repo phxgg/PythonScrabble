@@ -17,12 +17,14 @@ class Player:
     '''
     Returns player's letters
     '''
+    
     return self.letters
 
   def get_letters_with_value(self) -> str:
     '''
     Returns player's letters with their value
     '''
+
     letters_str = ''
     for letter in self.letters:
       letters_str += letter + f',{SakClass.get_letter_value(letter)} - '
@@ -60,6 +62,7 @@ class Player:
     '''
     Add remaining letters to player's letters so they're always 7
     '''
+
     needed_letters = 7 - len(self.get_letters())
     for i in range(needed_letters):
       self.add_letter(self.sak.get_letter())

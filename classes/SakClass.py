@@ -36,6 +36,7 @@ class SakClass:
     '''
     Initialize the bag with all letters. After that, randomize the letters in the bag.
     '''
+    
     for letter in self.letters:
       for i in range(self.letters[letter][0]):
         self.bag.append(letter)
@@ -96,14 +97,14 @@ class SakClass:
 
   def randomize_sak(self) -> None:
     '''
-    Randomize (shuffle) the letters in the bag.
+    Randomizes (shuffles) the letters in the bag.
     '''
 
     shuffle(self.bag)
 
   def number_of_letters(self) -> int:
     '''
-    Return the number of letters remaining in the bag.
+    Returns the number of letters remaining in the bag.
     '''
 
     return len(self.bag)
