@@ -5,6 +5,45 @@ from classes import Game, GameLog, Settings
 
 settings = Settings()
 
+def guidelines():
+  '''
+  Project PythonScrabble guidelines
+
+  Classes developed:
+    Settings
+    SakClass
+    Player
+    Computer
+    Human
+    Game
+    GameLog
+
+  Classes description:
+    Settings: Holds the game settings. Right now only the computer algorithm is implemented.
+    SakClass: Represents the 'bag of letters', from which you can get, put back, or shuffle letters.
+    Player: Represents a player in the game.
+    Computer: Inherits the Player class. Implements the computer algorithm.
+    Human: Inherits the Player class. Implements how the player plays the game.
+    Game: This class will initialize all needed variables to setup, run and end the game.
+    GameLog: Save or load game data through this class. Game logs are saved in a JSON file, and loaded as a GameLog object.
+
+  All words are stored in a 'wordlist' global variable, which is a type of list.
+
+  Decorators were used in the SakClass, Game, GameLogs classes to describe static methods.
+
+  Algorithms implemented: Min-Max-Smart
+    MIN:
+      All possible permutations of the letters are calculated starting from 2 and going up to 7 letters.
+      The algorithm will 'play' the first valid word it finds.
+    MAX:
+      All possible permutations of the letters are calculated starting from 7 and going down to 2 letters.
+      The algorithm will 'play' the first valid word it finds.
+    SMART:
+      All possible permutations of the letters are calculated starting from 2 and going up to 7 letters.
+      The algorithm will find all the valid words, then calculate the word that will give the highest score and 'play' it.
+  '''
+  return
+
 def handle_scores():
   Game.clear_screen()
 
@@ -101,6 +140,8 @@ def handle_menu_input():
 
 def main():
   Game.clear_screen()
+
+  help(guidelines)
 
   # game_log = GameLog.load('game_logs/test.json')
   # print(game_log)
