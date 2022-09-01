@@ -1,9 +1,7 @@
-from genericpath import getmtime
-from ntpath import join
 import os
 import sys
 
-from tabulate import tabulate
+# from tabulate import tabulate
 from classes.Game import Game
 from classes.GameLog import GameLog
 from classes.Settings import Settings
@@ -16,40 +14,61 @@ def handle_scores():
   print('**** SCORES ****')
   print('----------------')
 
-  logs = {
-    'date': [],
-    'player1': [],
-    'score1': [],
-    'player2': [],
-    'score2': [],
-    'winner': [],
-    'rounds': [],
-    'letters_used': []
-  }
+  # logs_tabulate = {
+  #   'date': [],
+  #   'player1': [],
+  #   'score1': [],
+  #   'player2': [],
+  #   'score2': [],
+  #   'winner': [],
+  #   'rounds': [],
+  #   'letters_used': []
+  # }
+
+  logs = {}
 
   game_logs_dir = 'game_logs/'
 
   if not os.path.exists('game_logs/'):
     os.makedirs(game_logs_dir)
 
-  # list_of_files = filter(lambda x: os.path.isfile(os.path.join(game_logs_dir, x)), os.listdir(game_logs_dir))
-  # list_of_files = sorted(list_of_files, key=lamba x: os.path.getmtime(os.path.join(game_logs_dir, x)))
-
+  i = 0
   for filename in os.listdir(game_logs_dir):
     f = os.path.join(game_logs_dir, filename)
     if os.path.isfile(f):
       game_log = GameLog.load(f)
 
-      logs['date'].append(game_log['date'])
-      logs['player1'].append(game_log['players'][0])
-      logs['player2'].append(game_log['players'][1])
-      logs['score1'].append(game_log['scores'][0])
-      logs['score2'].append(game_log['scores'][1])
-      logs['winner'].append(game_log['winner'])
-      logs['rounds'].append(game_log['rounds'])
-      logs['letters_used'].append(game_log['letters_used'])
+      logs[i] = game_log
+      i += 1
 
-  print(tabulate(logs, headers='keys'))
+      # logs_tabulate['date'].append(game_log['date'])
+      # logs_tabulate['player1'].append(game_log['players'][0])
+      # logs_tabulate['player2'].append(game_log['players'][1])
+      # logs_tabulate['score1'].append(game_log['scores'][0])
+      # logs_tabulate['score2'].append(game_log['scores'][1])
+      # logs_tabulate['winner'].append(game_log['winner'])
+      # logs_tabulate['rounds'].append(game_log['rounds'])
+      # logs_tabulate['letters_used'].append(game_log['letters_used'])
+
+  # print(tabulate(logs_tabulate, headers='keys'))
+
+  # I was not allowed to use the tabulate module to pretty print the table, so I came up with this by myself
+  
+  # print table keys
+  print('{:<20} {:<15} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10}'.format('Date', 'Player 1', 'Player 2', 'Score 1', 'Score 2', 'Winner', 'Rounds', 'Letters Used'))
+
+  # print table rows
+  for key, value in logs.items():
+    date = value['date']
+    player1 = value['players'][0]
+    player2 = value['players'][1]
+    score1 = value['scores'][0]
+    score2 = value['scores'][1]
+    winner = value['winner']
+    rounds = value['rounds']
+    letters_used = value['letters_used']
+
+    print('{:<20} {:<15} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10}'.format(date, player1, player2, score1, score2, winner, rounds, letters_used))
 
   print('\nPress any key to return to the main menu.')
   input()
