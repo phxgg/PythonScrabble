@@ -1,10 +1,7 @@
 import os
 import sys
 
-# from tabulate import tabulate
-from classes.Game import Game
-from classes.GameLog import GameLog
-from classes.Settings import Settings
+from classes import Game, GameLog, Settings
 
 settings = Settings()
 
@@ -13,17 +10,6 @@ def handle_scores():
 
   print('**** SCORES ****')
   print('----------------')
-
-  # logs_tabulate = {
-  #   'date': [],
-  #   'player1': [],
-  #   'score1': [],
-  #   'player2': [],
-  #   'score2': [],
-  #   'winner': [],
-  #   'rounds': [],
-  #   'letters_used': []
-  # }
 
   logs = {}
 
@@ -40,19 +26,6 @@ def handle_scores():
 
       logs[i] = game_log
       i += 1
-
-      # logs_tabulate['date'].append(game_log['date'])
-      # logs_tabulate['player1'].append(game_log['players'][0])
-      # logs_tabulate['player2'].append(game_log['players'][1])
-      # logs_tabulate['score1'].append(game_log['scores'][0])
-      # logs_tabulate['score2'].append(game_log['scores'][1])
-      # logs_tabulate['winner'].append(game_log['winner'])
-      # logs_tabulate['rounds'].append(game_log['rounds'])
-      # logs_tabulate['letters_used'].append(game_log['letters_used'])
-
-  # print(tabulate(logs_tabulate, headers='keys'))
-
-  # I was not allowed to use the tabulate module to pretty print the table, so I came up with this by myself
   
   # print table keys
   print('{:<20} {:<15} {:<10} {:<10} {:<10} {:<10} {:<10} {:<10}'.format('Date', 'Player 1', 'Player 2', 'Score 1', 'Score 2', 'Winner', 'Rounds', 'Letters Used'))
